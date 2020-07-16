@@ -9,14 +9,15 @@
 ################################################################################
 import numpy as np
 
-IrisLookupFile = 'info_issa_map4.txt' #please point to this textfile
+IrisLookupFile = '/home/vaughan/IRISpy/info_issa_map4.txt' #please point to this textfile
 # this means setting the path if it is in a different direct than the python
 # scripts
-IrisDir =  '/home/vaughan/IRISNOHOLES_B4H0' #please point this
+
+IrisDir =  '/home/vaughan/New_Horizons/nh-ebl-pipeline/py/iris/IRISNOHOLES_B4/' #please point this
 # to the directory where you are keeping all of your IRIS fits files.
-DataDir = '/home/vaughan/New_Horizons/nh-ebl-pipeline/py/iris/test_images/' #please point this to where you want
+DataDir = '/home/vaughan/IRISpy/' #please point this to where you want
 # your saved data files to be stored
-FieldsFile = 'fields.txt' #please point this to the filepath that contains your
+FieldsFile = '/home/vaughan/IRISpy/fields.txt' #please point this to the filepath that contains your
 # txt file with the fields you want to look at.
 # format for txt file should be:
 # RA DEC

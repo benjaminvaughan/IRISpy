@@ -147,7 +147,9 @@ def mosaic(header, band=4, catname=config.IrisLookupFile, dir=config.IrisDir):
             else:
                 result[i,j] = -32768
     #in interpolating the image the x and y axes get flipped.
-    result = np.swapaxes(result, 0, 1) - 0.65
+    result = np.swapaxes(result, 0, 1)
+    if band == 4:
+        result -= 0.65 #subtract CIB to get just dgl / cirrus
 
 
     return result

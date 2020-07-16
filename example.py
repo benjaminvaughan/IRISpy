@@ -10,7 +10,7 @@
 #Additional Info
 #
 ################################################################################
-from mosaiq import mosaic
+from mosaic import mosaic
 import numpy as np
 import config
 from astropy.io import fits
@@ -24,11 +24,11 @@ from astropy.coordinates import FK4
 
 #choose the field that you want
 #fieldnum is the label of the field
-fieldnum = 0
+fieldnum = 1
 #num corresponds to the field number in the fields.txt list and not related to the matlab label, used to index fields.txt
 field = config.fields[:,fieldnum] # : selects both RA and Dec
 
-#note that the fields in fields.txt are given in the ICRS coordinate frame, but the IRAS data has B1950 Astrometry. 
+#note that the fields in fields.txt are given in the ICRS coordinate frame, but the IRAS data has B1950 Astrometry.
 ra_c = field[0] *u.deg
 dec_c = field[1] * u.deg
 coord = SkyCoord(ra=ra_c, dec=dec_c)
@@ -39,7 +39,7 @@ dec_c_b = float(b1950_coord.dec.to_string(decimal=True))
 pixsize = 0.0250000000000 #pixels / arcsecond of observation to interpolate IRIS
 # maps to.
 naxis = 22
-
+name = 'rxj1347'
 #square patch of sky, this can be changed if desired.
 naxis1 = naxis2 = naxis
 
@@ -62,12 +62,12 @@ map = mosaic(head, band=4)
 
 hdu = fits.PrimaryHDU(map, head)
 hdul = fits.HDUList([hdu])
-hdul.writeto(config.DataDir + 'iris_0' + str(fieldnum) + '_fx.fits')
+hdul.writeto(config.DataDir + 'iris_0' + name + '_fx.fits')
 #ra
 hdu = fits.PrimaryHDU(ra, head)
 hdul = fits.HDUList([hdu])
-hdul.writeto(config.DataDir + 'iris_0' + str(fieldnum) + '_ra.fits')
+hdul.writeto(config.DataDir + 'iris_0' + name + '_ra.fits')
 #dec
 hdu = fits.PrimaryHDU(dec, head)
 hdul = fits.HDUList([hdu])
-hdul.writeto(config.DataDir + 'iris_0' + str(fieldnum) + '_dc.fits')
+hdul.writeto(config.DataDir + 'iris_0' + name + '_dc.fits')
