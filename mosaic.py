@@ -69,8 +69,8 @@ def mosaic(header, band=4, catname=config.IrisLookupFile, dir=config.IrisDir):
     ctype = get_cord_type(header)
 
 
-    # ra = nan2undef(ra)
-    # dec = nan2undef(dec)
+    ra = nan2undef(ra)
+    dec = nan2undef(dec)
 
     ra = np.asarray(ra)
     dec = np.asarray(dec)
