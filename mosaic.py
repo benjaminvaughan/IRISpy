@@ -69,8 +69,9 @@ def mosaic(header, band=4, catname=config.IrisLookupFile, dir=config.IrisDir):
     ctype = get_cord_type(header)
 
 
-    ra = nan2undef(ra)
-    dec = nan2undef(dec)
+    # ra = nan2undef(ra)
+    # dec = nan2undef(dec)
+
     ra = np.asarray(ra)
     dec = np.asarray(dec)
     #converted these to arrays for easier data manipulation
@@ -82,18 +83,20 @@ def mosaic(header, band=4, catname=config.IrisLookupFile, dir=config.IrisDir):
     ind1 = np.where(ra != -32768)[0]
     ind2 = np.where(dec != -32768)[0]
 
-    ind = []
-    for i in range(ra.shape[0]):
-        for j in range(ra.shape[1]):
-            if ra[i,j] != -32768 and dec[i,j] != -32768:
-                ind.append([i,j])
+    ra_list = ra.flatten()
+    dec_list = dec.flatten()
+    ind = np.where(ra_list != -32768)[0]
+    # ind = []
+    # for i in range(ra.shape[0]):
+    #     for j in range(ra.shape[1]):
+    #         if ra[i,j] != -32768 and dec[i,j] != -32768:
+    #             ind.append([i,j])
     ind = np.asarray(ind)
     good_inds = np.zeros(numel)
-
-    c1min = np.min(ra[ind])
-    c1max = np.max(ra[ind])
-    c2min = np.min(dec[ind])
-    c2max = np.max(dec[ind])
+    c1min = np.min(ra_list[ind])
+    c1max = np.max(ra_list[ind])
+    c2min = np.min(dec_list[ind])
+    c2max = np.max(dec_list[ind])
 
     for i in range(numel):
         if c1min > ramin[i] and c1min < ramax[i] and c2min > decmin[i] and c2min < decmax[i]:
